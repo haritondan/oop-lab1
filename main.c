@@ -32,8 +32,12 @@ int Enqueue(int x){
 
 int main() {
  
- 
+int n;
 
+ printf("Please provide a number to be added");
+ scanf("&d",&n);
+
+ Enqueue(n);
 
 
 }
