@@ -37,7 +37,32 @@ int main(){
          printf("\nWrong Input");
          break;
       }
-   }
-
+   }while (ch!=0);
+   return 1;
     
+}
+
+//function to add an element
+void enQueue(int data){
+   struct Queue *temp;
+   temp = (struct Queue *)malloc(sizeof(struct Queue));
+   if(temp==NULL)
+   {
+      printf("\nQueue is empty");
+      return;
+   }
+   temp->data=data;//the value is enteredin the list
+   temp->next=NULL;
+   if(rear==NULL)
+   {
+      front=temp;
+      rear=temp;
+   }
+   else
+   {
+      rear->next=temp;
+      rear=rear->next;//rear is incremented
+   }
+   
+   
 }
