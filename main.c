@@ -14,14 +14,18 @@ struct Queue *rear;
 
 void enQueue(int);//function is declared
 void deQueue();//function is declared
+void saveFile();
+
 
 int main(){
    struct Queue *q;
    int ch,data,val;
+   char title[255];
    do{
       printf("\nEnter 1 to add an element in the Queue");
       printf("\nEnter 2 to delete an element from the Queue");
       printf("\nEnter 3 to see the Queue");
+      printf("\nEnter 5 to save your queue in a file");
       printf("\nEnter your choice ");
       scanf("%d",&ch);  
    
@@ -45,7 +49,11 @@ int main(){
             printf("%d ",q->data);
             q=q->next;
          }
-         
+         break;
+      case 5:
+         printf("\nEnter file name ");
+         scanf("%s",title); 
+         saveFile(title);  
          break;
       default:
          printf("\nWrong Input\n");
@@ -56,6 +64,25 @@ int main(){
 
 
 }
+
+void saveFile(char title[]){
+   struct Queue *q;
+   q=front;
+   FILE *f = fopen(title, "w");
+   if (f == NULL)
+   {
+      printf("Error creating file!\n");
+   }
+   while (q!=NULL)
+   {
+      fprintf(f,"%d ",q->data);
+      q=q->next;
+   }
+   fclose(f);
+}
+
+
+
 
 //function to add an element
 void enQueue(int data){
