@@ -1,62 +1,41 @@
 #include <stdio.h>
 #include <stdbool.h>
- 
- 
- int A[10];
- int front = -1;
- int rear = -1;
 
 
-bool isEmpty(){
-   if (front == -1 && rear == -1){
-   return true;
-   }
-   else{
-      return false;
-   }
-}
+struct Queue
+{
+   struct Queue *next;
+   int data;
+};
 
+struct Queue *front;
+struct Queue *rear;
 
-int Enqueue(int x){
-   if (rear == sizeof(A) - 1){
-   printf("Queue is full");
-   }
-   else if (isEmpty())
-   {
-      front = rear = 0;
-   }
-   else {
-      rear = rear + 1;
-   }
-   A[rear]= x;
-}
+void addq(int);//function is declared
+int delq();//delq function id is declared
 
-int Dequeue(){
-   if (isEmpty())
-   {
-      return 0;
-   }
-   else if(front==rear){
-      front = rear = -1;
-   }
-   else {
-      front = front + 1;
-   }
+int main(){
+   int ch,data,val;
+   do{
+      printf("\nEnter 1 to add an element in the Queue");
+      printf("\nEnter 2 to delete an element front the Queue");
+      printf("\nEnter your choice");
+      scanf("%d",&ch;  
    
-}
+      switch (ch)
+      {
+      case 1: 
+         printf("\nEnter them element to include");
+         scanf("%d",&data);   
+         break;
 
-int main() {
- 
-int n;
+      case 2:
+         printf("\n")
+      
+      default:
+         break;
+      }
+   }
 
- printf("Please provide a number to be added /n");
- scanf("%d",&n);
-
- Enqueue(n);
- for (int i = 0; i < 10; i++){
- printf("%d",A[i]);
- }
-
-
-return 0;
+   
 }
