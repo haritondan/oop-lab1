@@ -13,7 +13,7 @@ struct Queue *front;
 struct Queue *rear;
 
 void enQueue(int);//function is declared
-int deQueue();//delq function id is declared
+void deQueue();//function is declared
 
 int main(){
    struct Queue *q;
@@ -22,28 +22,27 @@ int main(){
       printf("\nEnter 1 to add an element in the Queue");
       printf("\nEnter 2 to delete an element from the Queue");
       printf("\nEnter 3 to see the Queue");
-      printf("\nEnter your choice");
+      printf("\nEnter your choice ");
       scanf("%d",&ch);  
    
       switch (ch)
       {
       case 1: 
-         printf("\nEnter them element to include");
+         printf("\nEnter the element to include ");
          scanf("%d",&data);
          enQueue(data);   
          break;
 
       case 2:
-         printf("\nEnter them element to delete");
-         scanf("%d",&val);
-         val = deQueue();
+      
+         deQueue();
           
          break;
       case 3:
          q=front;
          while (q!=NULL)
          {
-            printf("%d",q->data);
+            printf("%d ",q->data);
             q=q->next;
          }
          
@@ -61,13 +60,13 @@ int main(){
 //function to add an element
 void enQueue(int data){
    struct Queue *temp;
-   temp = (struct Queue *)malloc(sizeof(struct Queue));
+   temp = malloc(sizeof(struct Queue));
    if(temp==NULL)
    {
-      printf("\nQueue is full");
+      printf("\nCannot allocate memory");
       return;
    }
-   temp->data=data;//the value is enteredin the list
+   temp->data=data;//the value is entered in the list
    temp->next=NULL;
    if(rear==NULL)
    {
@@ -83,21 +82,14 @@ void enQueue(int data){
 
 }
 //to delete an element
-int deQueue()
+void deQueue()
 {
    struct Queue *temp;
-   int data=0;
-   if(front==NULL)
-   {
-      printf("\nQueue is empty\n");
-      return 0;
-   }
-   data=front->data;
    temp=front;
    if(front==NULL)
    {
-      front==NULL;
-      rear=NULL;
+      printf("\nQueue is empty\n");
+      return;
    }
    else
    {
@@ -105,6 +97,6 @@ int deQueue()
       free(temp);
       
    }
-   return data;
+   
 }
 
