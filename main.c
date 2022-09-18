@@ -20,7 +20,7 @@ int main(){
       printf("\nEnter 1 to add an element in the Queue");
       printf("\nEnter 2 to delete an element front the Queue");
       printf("\nEnter your choice");
-      scanf("%d",&ch;  
+      scanf("%d",&ch);  
    
       switch (ch)
       {
@@ -30,9 +30,11 @@ int main(){
          break;
 
       case 2:
-         printf("\n")
-      
+         val=delq();
+         printf("\nThe deleted element is %d");
+         break;
       default:
+         printf("\nWrong Input");
          break;
       }
    }
