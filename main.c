@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdbool.h>
+#include <stdlib.h>
 
 
 struct Queue
@@ -30,8 +30,8 @@ int main(){
          break;
 
       case 2:
-         val=delq();
-         printf("\nThe deleted element is %d");
+         printf("\nEnter them element to delete");
+         scanf("%d",&val);  
          break;
       default:
          printf("\nWrong Input");
@@ -48,7 +48,7 @@ void enQueue(int data){
    temp = (struct Queue *)malloc(sizeof(struct Queue));
    if(temp==NULL)
    {
-      printf("\nQueue is empty");
+      printf("\nQueue is full");
       return;
    }
    temp->data=data;//the value is enteredin the list
@@ -64,5 +64,29 @@ void enQueue(int data){
       rear=rear->next;//rear is incremented
    }
    
-   
+
 }
+//to delete an element
+void deQueue()
+{
+   struct Queue *temp;
+   int data=0;
+   if(front==NULL)
+   {
+      printf("\nQueue is empty");
+      
+   }
+   data=front->data;
+   temp=front;
+   if(front==NULL)
+   {
+      front==NULL;
+      rear=NULL;
+   }
+   else
+   {
+      front=front->next;
+      free(temp);
+   }
+}
+
