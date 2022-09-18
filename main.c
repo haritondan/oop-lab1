@@ -11,14 +11,15 @@ struct Queue
 struct Queue *front;
 struct Queue *rear;
 
-void addq(int);//function is declared
-int delq();//delq function id is declared
+void enQueue(int);//function is declared
+int deQueue();//delq function id is declared
 
 int main(){
    int ch,data,val;
    do{
       printf("\nEnter 1 to add an element in the Queue");
-      printf("\nEnter 2 to delete an element front the Queue");
+      printf("\nEnter 2 to delete an element from the Queue");
+      printf("\nEnter 3 to see the Queue");
       printf("\nEnter your choice");
       scanf("%d",&ch);  
    
@@ -26,12 +27,15 @@ int main(){
       {
       case 1: 
          printf("\nEnter them element to include");
-         scanf("%d",&data);   
+         scanf("%d",&data);
+         enQueue(data);   
          break;
 
       case 2:
          printf("\nEnter them element to delete");
-         scanf("%d",&val);  
+         scanf("%d",&val);
+         val = deQueue();
+          
          break;
       default:
          printf("\nWrong Input");
@@ -67,14 +71,14 @@ void enQueue(int data){
 
 }
 //to delete an element
-void deQueue()
+int deQueue()
 {
    struct Queue *temp;
    int data=0;
    if(front==NULL)
    {
-      printf("\nQueue is empty");
-      
+      printf("\nQueue is empty\n");
+      return 0;
    }
    data=front->data;
    temp=front;
@@ -87,6 +91,8 @@ void deQueue()
    {
       front=front->next;
       free(temp);
+      
    }
+   return data;
 }
 
