@@ -8,6 +8,7 @@ struct Queue
    int data;
 };
 
+
 struct Queue *front;
 struct Queue *rear;
 
@@ -15,6 +16,7 @@ void enQueue(int);//function is declared
 int deQueue();//delq function id is declared
 
 int main(){
+   struct Queue *q;
    int ch,data,val;
    do{
       printf("\nEnter 1 to add an element in the Queue");
@@ -37,13 +39,23 @@ int main(){
          val = deQueue();
           
          break;
+      case 3:
+         q=front;
+         while (q!=NULL)
+         {
+            printf("%d",q->data);
+            q=q->next;
+         }
+         
+         break;
       default:
-         printf("\nWrong Input");
+         printf("\nWrong Input\n");
          break;
       }
    }while (ch!=0);
    return 1;
-    
+
+
 }
 
 //function to add an element
