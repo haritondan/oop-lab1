@@ -26,7 +26,7 @@ int main(){
       printf("\nEnter 2 to delete an element from the Queue");
       printf("\nEnter 3 to see the Queue");
       printf("\nEnter 4 to display your Queue in terminal from a file");
-      printf("\nEnter 5 to save your Queue in a file");
+      printf("\nEnter 5 to save your Queue in a file\n");
       printf("\nEnter your choice ");
       scanf("%d",&ch);  
    
@@ -57,7 +57,7 @@ int main(){
          openFile(title);  
          break;   
       case 5:
-         printf("\nEnter file name ");
+         printf("\nEnter file name\n");
          scanf("%s",title); 
          saveFile(title);  
          break;
@@ -74,10 +74,18 @@ int main(){
 
 void openFile(char title[]){
    FILE *f = fopen(title, "r");
+   char c;
    if (f == NULL)
    {
       printf("File is empty!\n");
    }
+   c = fgetc(f);
+    while (c != EOF)
+    {
+        printf ("%c", c);
+        c = fgetc(f);
+    }
+   printf("\n");
    fclose(f);
 }
 
