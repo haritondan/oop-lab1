@@ -14,8 +14,8 @@ struct Queue *rear;
 
 void enQueue(int);//function is declared
 void deQueue();//function is declared
-void saveFile();
-
+void saveFile();//func to save a file
+void openFile();//func to open a file
 
 int main(){
    struct Queue *q;
@@ -25,7 +25,8 @@ int main(){
       printf("\nEnter 1 to add an element in the Queue");
       printf("\nEnter 2 to delete an element from the Queue");
       printf("\nEnter 3 to see the Queue");
-      printf("\nEnter 5 to save your queue in a file");
+      printf("\nEnter 4 to display your Queue in terminal from a file");
+      printf("\nEnter 5 to save your Queue in a file");
       printf("\nEnter your choice ");
       scanf("%d",&ch);  
    
@@ -50,6 +51,11 @@ int main(){
             q=q->next;
          }
          break;
+      case 4:
+         printf("\nEnter file name ");
+         scanf("%s",title); 
+         openFile(title);  
+         break;   
       case 5:
          printf("\nEnter file name ");
          scanf("%s",title); 
@@ -63,6 +69,16 @@ int main(){
    return 1;
 
 
+}
+
+
+void openFile(char title[]){
+   FILE *f = fopen(title, "r");
+   if (f == NULL)
+   {
+      printf("File is empty!\n");
+   }
+   fclose(f);
 }
 
 void saveFile(char title[]){
