@@ -12,11 +12,14 @@ struct Queue
 struct Queue *front;
 struct Queue *rear;
 
+
 bool search(int);
 void enQueue(int);//function is declared
 void deQueue();//function is declared
+void printElements();//func to see the queue
 void saveFile();//func to save a file
 void openFile();//func to open a file
+void bubbleSort();//fun
 
 int main(){
    struct Queue *q;
@@ -29,6 +32,7 @@ int main(){
       printf("\nEnter 4 to open your Queue from a file");
       printf("\nEnter 5 to save your Queue in a file");
       printf("\nEnter 6 to search for a specific value");
+      printf("\nEnter 7 to sort the Queue ");
       printf("\nEnter 0 to exit\n");
       printf("\nEnter your choice ");
       scanf("%d",&ch);  
@@ -47,12 +51,7 @@ int main(){
           
          break;
       case 3:
-         q=front;
-         while (q!=NULL)
-         {
-            printf("%d ",q->data);
-            q=q->next;
-         }
+         printElements();
          break;
       case 4:
          printf("\nEnter file name ");
@@ -74,9 +73,13 @@ int main(){
          }else{
             printf("\nFalse\n");
          }
-
-          
          break;
+      case 7:
+         bubbleSort(q);
+         printf("\nThe sorted queue:\n");
+         printElements();
+         printf("\n");
+         break;   
       case 0:
          return 0;   
       default:
@@ -88,6 +91,63 @@ int main(){
 
 
 }
+
+void printElements(){
+   struct Queue *q;
+   q=front;
+         while (q!=NULL)
+         {
+            printf("%d ",q->data);
+            q=q->next;
+         }
+}
+
+int count(){
+   struct Queue *q;
+   q = front;
+   int co = 0;
+   while (q!=NULL)
+   {
+      co++;
+      q=q->next;
+   }
+   return co;
+}
+
+
+void bubbleSort()
+{
+    struct Queue** q;
+    int i, j, swapped;
+    int countQ = count(front);
+    for (i = 0; i <= countQ; i++) {
+ 
+        q = &front;
+        swapped = 0;
+ 
+        for (j = 0; j < countQ - i - 1; j++) {
+ 
+            struct Queue* p1 = *q;
+            struct Queue* p2 = p1->next;
+ 
+            if (p1->data > p2->data) {
+
+                  struct Queue* tmp = p2->next;
+                  p2->next = p1;
+                  p1->next = tmp;
+                  *q = p2;
+
+                swapped = 1;
+            }
+ 
+            q = &(*q)->next;
+        }
+
+        if (swapped == 0)
+            break;
+    }
+}
+
 
 bool search(int val){
    struct Queue *curr;
