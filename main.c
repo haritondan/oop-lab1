@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <stdbool.h>
 
 struct Queue
 {
@@ -12,6 +12,7 @@ struct Queue
 struct Queue *front;
 struct Queue *rear;
 
+bool search(int);
 void enQueue(int);//function is declared
 void deQueue();//function is declared
 void saveFile();//func to save a file
@@ -27,7 +28,8 @@ int main(){
       printf("\nEnter 3 to see the Queue");
       printf("\nEnter 4 to open your Queue from a file");
       printf("\nEnter 5 to save your Queue in a file");
-      printf("\nEnter 0 to exit");
+      printf("\nEnter 6 to search for a specific value");
+      printf("\nEnter 0 to exit\n");
       printf("\nEnter your choice ");
       scanf("%d",&ch);  
    
@@ -58,9 +60,22 @@ int main(){
          openFile(title);  
          break;   
       case 5:
-         printf("\nEnter file name\n");
+         printf("\nEnter file name ");
          scanf("%s",title); 
          saveFile(title);  
+         break;
+      case 6:
+         printf("\nEnter a value ");
+         scanf("%d", &val);
+         search(val);
+         if (search(val)==true)
+         {
+            printf("\nTrue\n");
+         }else{
+            printf("\nFalse\n");
+         }
+
+          
          break;
       case 0:
          return 0;   
@@ -74,6 +89,19 @@ int main(){
 
 }
 
+bool search(int val){
+   struct Queue *curr;
+   curr=front;
+   while (curr!=NULL)
+   {
+      if (curr->data==val)
+      {
+         return true;
+      }
+      curr=curr->next;
+   }
+   return false;
+};
 
 void openFile(char title[]){
    
