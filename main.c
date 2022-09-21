@@ -19,7 +19,8 @@ void deQueue();//function is declared
 void printElements();//func to see the queue
 void saveFile();//func to save a file
 void openFile();//func to open a file
-void bubbleSort();//fun
+void bubbleSort();//func for sorting
+void reverse(); //func for reversing
 
 int main(){
    struct Queue *q;
@@ -33,6 +34,7 @@ int main(){
       printf("\nEnter 5 to save your Queue in a file");
       printf("\nEnter 6 to search for a specific value");
       printf("\nEnter 7 to sort the Queue ");
+      printf("\nEnter 8 to reverse the Queue ");
       printf("\nEnter 0 to exit\n");
       printf("\nEnter your choice ");
       scanf("%d",&ch);  
@@ -79,7 +81,13 @@ int main(){
          printf("\nThe sorted queue:\n");
          printElements();
          printf("\n");
-         break;   
+         break;
+      case 8:
+         reverse();
+         printf("\nThe reversed queue:\n");
+         printElements();
+         printf("\n");
+         break;  
       case 0:
          return 0;   
       default:
@@ -90,6 +98,23 @@ int main(){
    return 1;
 
 
+}
+
+void reverse(){
+   struct Queue* current;
+   struct Queue* nxt;
+   struct Queue* prev = NULL;
+   struct Queue* temp;
+   current = front;
+   while (current!=NULL)
+   {
+      temp=current->next;
+      current->next=prev;
+      prev=current;
+      current=temp;
+   }
+   front=prev;
+   
 }
 
 void printElements(){
