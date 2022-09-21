@@ -25,8 +25,9 @@ int main(){
       printf("\nEnter 1 to add an element in the Queue");
       printf("\nEnter 2 to delete an element from the Queue");
       printf("\nEnter 3 to see the Queue");
-      printf("\nEnter 4 to display your Queue in terminal from a file");
-      printf("\nEnter 5 to save your Queue in a file\n");
+      printf("\nEnter 4 to open your Queue from a file");
+      printf("\nEnter 5 to save your Queue in a file");
+      printf("\nEnter 0 to exit");
       printf("\nEnter your choice ");
       scanf("%d",&ch);  
    
@@ -61,6 +62,8 @@ int main(){
          scanf("%s",title); 
          saveFile(title);  
          break;
+      case 0:
+         return 0;   
       default:
          printf("\nWrong Input\n");
          break;
@@ -73,17 +76,21 @@ int main(){
 
 
 void openFile(char title[]){
+   
    FILE *f = fopen(title, "r");
-   char c;
+   int c;
    if (f == NULL)
    {
       printf("File is empty!\n");
+      return;
    }
-   c = fgetc(f);
-    while (c != EOF)
+   front=NULL;
+   rear=NULL;
+   
+    while (!feof(f))
     {
-        printf ("%c", c);
-        c = fgetc(f);
+        fscanf(f ,"%d ", &c);
+        enQueue(c);
     }
    printf("\n");
    fclose(f);
