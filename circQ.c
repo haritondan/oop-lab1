@@ -55,10 +55,16 @@ int main(){
          printElements();
          break;
       case 4:
+         if (strlen(fileName)!=0)
+         {
+            saveFile(fileName);
+            printf("\nChanges Saved\n");
+         }
+         else{
          printf("\nEnter file name ");
          scanf("%s",title); 
-         openFile(title);  
-         break;   
+         saveFile(title);}
+         break;  
       case 5:
          printf("\nEnter file name ");
          scanf("%s",title); 

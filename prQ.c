@@ -61,7 +61,7 @@ int main(){
          openFile(title);  
          break;   
       case 5:
-         if (fileName!=NULL)
+         if (strlen(fileName)!=0)
          {
             saveFile(fileName);
             printf("\nChanges Saved\n");
