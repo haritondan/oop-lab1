@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 
 struct Queue
 {
@@ -11,6 +12,7 @@ struct Queue
 
 struct Queue *front;
 struct Queue *rear;
+char fileName[255];
 
 
 bool search(int);
@@ -61,9 +63,16 @@ int main(){
          openFile(title);  
          break;   
       case 5:
+         if (fileName!=NULL)
+         {
+            saveFile(fileName);
+            printf("\nChanges Saved\n");
+         }
+         else{
          printf("\nEnter file name ");
          scanf("%s",title); 
-         saveFile(title);  
+         saveFile(title);
+         }  
          break;
       case 6:
          printf("\nEnter a value ");
@@ -207,6 +216,7 @@ void openFile(char title[]){
     }
    printf("\n");
    fclose(f);
+   strcpy(fileName, title);
 }
 
 void saveFile(char title[]){

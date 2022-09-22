@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 
 struct Queue
@@ -12,12 +13,15 @@ struct Queue
 
 struct Queue *front;
 struct Queue *rear;
+char fileName[255];
 
 
 
 void enQueue(int, int) ;//function is declared
 void deQueue();//function is declared
 void printElements();//func to see the queue
+void saveFile();//func to save a file
+void openFile();//func to open a file
 
 int main(){
    struct Queue *q;
@@ -27,6 +31,8 @@ int main(){
       printf("\nEnter 1 to add an element in the Queue");
       printf("\nEnter 2 to delete an element from the Queue");
       printf("\nEnter 3 to see the Queue");
+      printf("\nEnter 4 to open your Queue from a file");
+      printf("\nEnter 5 to save your Queue in a file");
       printf("\nEnter 0 to exit\n");
       printf("\nEnter your choice ");
       scanf("%d",&ch);  
@@ -48,7 +54,24 @@ int main(){
          break;
       case 3:
          printElements();
-         break; 
+         break;
+      case 4:
+         printf("\nEnter file name ");
+         scanf("%s",title); 
+         openFile(title);  
+         break;   
+      case 5:
+         if (fileName!=NULL)
+         {
+            saveFile(fileName);
+            printf("\nChanges Saved\n");
+         }
+         else{
+         printf("\nEnter file name ");
+         scanf("%s",title); 
+         saveFile(title);
+         }  
+         break;
       case 0:
          return 0;   
       default:
@@ -74,7 +97,42 @@ void printElements(){
 }
 
 
+void openFile(char title[]){
+   FILE *f = fopen(title, "r");
+   int c, p;
+   if (f == NULL)
+   {
+      printf("File is empty!\n");
+      return;
+   }
+   front=NULL;
+   rear=NULL;
+   
+    while (!feof(f))
+    {
+        fscanf(f ,"%d, %d \n", &c,&p);
+        enQueue(c, p);
+    }
+   printf("\n");
+   fclose(f);
+   strcpy(fileName, title);
+}
 
+void saveFile(char title[]){
+   struct Queue *q;
+   q=front;
+   FILE *f = fopen(title, "w");
+   if (f == NULL)
+   {
+      printf("Error creating file!\n");
+   }
+   while (q!=NULL)
+   {
+      fprintf(f,"%d, %d \n",q->data, q->priority);
+      q=q->next;
+   }
+   fclose(f);
+}
 
 
 
